@@ -33,4 +33,19 @@ class CalculatorTest {
         List<Integer> nums = Arrays.asList(1, 2, 3, null, 4);
         assertEquals(c.sumUp(nums), c.addAll(nums));
     }
+
+    @Test 
+    void add_all_shouldCorrectlySum(){
+        Calculator c = new Calculator();
+        List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7);
+        assertEquals(28, c.addAll(nums));
+    }
+
+    @Test
+    void divide_shouldDivideCorrectly(){
+        Calculator c = new Calculator();
+        assertEquals(5, c.divide(10, 2));
+        assertEquals(2, c.divide(5, 2));
+
+    }
 }
