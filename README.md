@@ -5,6 +5,10 @@ Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folge
 
 ---
 
+## Übung 1
+- Autor: Sarah Traunmüller
+- Besonderheit: Meine Erfahrungen mit Git sind derweil begrenzt aber gut, man hat viele Möglichkeiten gemeinsam an einem Projekt zu arbeiten, das kann Nerven sparen aber auch Nerven kosten (beispielsweise im Semesterprojekt und wenn git nicht so gelebt wird, wie es gelebt werden soll)
+
 ## Voraussetzungen (VS Code)
 - **Extension Pack for Java** (Language Support, Debugger, Test Runner, Maven).
 - **JDK 17** aktiv: *Java: Configure Java Runtime*.
@@ -276,6 +280,8 @@ mvn -q -DskipTests=false test
 ```
 
 ---
+
+
 
 
 ## Ausblick
