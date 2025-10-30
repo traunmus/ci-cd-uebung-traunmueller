@@ -12,9 +12,6 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-
-
-
 jobs: 
   build-test: 
     name: Build and test
