@@ -5,6 +5,8 @@ Dieses Repository ist der Startpunkt für **Übung 1** und wird in **allen folge
 
 ---
 
+[![CI](https://github.com/traunmus/ci-cd-uebung-traunmueller/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/traunmus/ci-cd-uebung-traunmueller/actions/workflows/ci.yml)
+
 ## Übung 1
 - Autor: Sarah Traunmüller
 - Besonderheit: Meine Erfahrungen mit Git sind derweil begrenzt aber gut, man hat viele Möglichkeiten gemeinsam an einem Projekt zu arbeiten, das kann Nerven sparen aber auch Nerven kosten (beispielsweise im Semesterprojekt und wenn git nicht so gelebt wird, wie es gelebt werden soll)
