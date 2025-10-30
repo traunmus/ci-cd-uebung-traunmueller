@@ -44,12 +44,20 @@ jobs:
           name: surefire-${{ matrix.os }}-java${{ matrix.java }}
           path: target/surefire-reports
 
+      - name: Upload compiled classes
+        uses: actions/upload-artifact@v4
+        if: matrix.os == 'ubuntu-latest' && matrix.java == 21
+        with:
+          name: compiled-classes
+          path: target/classes
+
+
       - name: Upload JaCoCo HTML (optional)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: jacoco-site
-          path: target/site/jacoco-${{ matrix.os }}-java${{ matrix.java }}
+          name: jacoco-site-${{ matrix.os }}-java${{ matrix.java }}
+          path: target/site/jacoco
 
     
   sonar:
@@ -66,6 +74,12 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
+
+      - name: Download compiled classes
+        uses: actions/download-artifact@v4
+        with:
+          name: compiled-classes
+          path: target/classes
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
