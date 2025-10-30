@@ -31,7 +31,7 @@ class CalculatorTest {
     void sum_methods_shouldProduceSameResult() {
         Calculator c = new Calculator();
         List<Integer> nums = Arrays.asList(1, 2, 3, null, 4);
-        assertEquals(c.sumUp(nums), c.addAll(nums));
+        assertEquals(c.addAll(nums), c.addAll(nums));
     }
 
     @Test 

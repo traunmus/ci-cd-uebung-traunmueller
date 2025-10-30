@@ -9,7 +9,7 @@ public class App {
         System.out.println("Sum(2,3) = " + sum);
         
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
-        int s1 = calc.sumUp(numbers); 
+        int s1 = calc.addAll(numbers); 
         int s2 = calc.addAll(numbers);   
         System.out.println("sumUp=" + s1 + ", addAll=" + s2);
 
