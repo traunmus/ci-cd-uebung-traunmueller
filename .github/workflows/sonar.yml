@@ -17,7 +17,6 @@ concurrency:
 
 jobs: 
   Sonar: 
-  
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
