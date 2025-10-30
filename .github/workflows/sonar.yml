@@ -12,22 +12,18 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-
-
-
 jobs: 
-  Sonar: 
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        env:
-          SONAR_TOKEN: ${{ secrets.CICD_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=traunmus_ci-cd-uebung-traunmueller
-            -Dsonar.organization=traunmus
-            -Dsonar.branch.name=main
-            -Dsonar.java.binaries=target/classes
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+  sonar: 
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v2
+      env:
+        SONAR_TOKEN: ${{ secrets.CICD_TOKEN }}
+      with:
+        args: >
+          -Dsonar.projectKey=traunmus_ci-cd-uebung-traunmueller
+          -Dsonar.organization=traunmus
+          -Dsonar.branch.name=main
+          -Dsonar.java.binaries=target/classes
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
 
