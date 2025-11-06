@@ -1,0 +1,9 @@
+# Maven
+target/
+# IDE/OS
+.github/
+.git/
+.gitignore
+.idea/
+.vscode/
+.DS_Store
