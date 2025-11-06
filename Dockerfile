@@ -1,5 +1,5 @@
 # ===== STAGE 1: Build =====
-FROM maven:3.9-eclipse-temurin-17 AS build
+FROM --platform=linux/amd64 maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
 COPY pom.xml .
@@ -10,7 +10,7 @@ RUN mvn -B -DskipTests=false package && ls -la target
 
 
 # ===== STAGE 2: Runtime =====
-FROM eclipse-temurin:17-jre
+FROM --platform=linux/amd64 eclipse-temurin:17-jre
 WORKDIR /app
 
 # Kopiere das erzeugte JAR aus target nach /app/app.jar
