@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches: [ main ]
-    paths: [ 'pom.xml', 'src/**', '.github/workflows/**' ]
+    paths: [ 'Dockerfile', '.dockerignore','pom.xml', 'src/**', '.github/workflows/**' ]
   pull_request:
     branches: [ main ]
-    paths: [ 'pom.xml', 'src/**', '.github/workflows/**' ]
+    paths: [ 'Dockerfile', '.dockerignore', 'pom.xml', 'src/**', '.github/workflows/**' ]
 
 concurrency: 
   group: ci-${{ github.ref }}
@@ -92,5 +92,42 @@ jobs:
             -Dsonar.branch.name=main
             -Dsonar.java.binaries=target/classes
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+  docker: 
+    name: Docker build
+    needs: sonar
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK (warm up Maven cache for build stage)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Set up DockerBuildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Compute SHA
+        id: vars
+        run: echo "short_sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
+      - name: Build 
+        uses: docker/build-push-action@v6
+        with: 
+          context: .
+          platforms: linux/amd
+          load: true
+          tags: local/app:${{ steps.vars.outputs.short_sha }}
+      
+      - name: Save image
+        run: docker save -o image-${{ steps.vars.outputs.short_sha }}.tar local/app:${{ steps.vars.outputs.short_sha }}
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with: 
+          name: docker-image-${{ steps.vars.outputs.short_sha }}
+          path: image-${{ steps.vars.outputs.short_sha }}.tar
+          retention-days: 7
 
 
