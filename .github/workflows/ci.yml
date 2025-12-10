@@ -196,7 +196,6 @@ jobs:
         continue-on-error: true
         with:
           image: local/app:${{ needs.docker.outputs.short_sha }}
-          severity: 'Low,Medium,High,Critical'
           output-format: json
           output-file: grype-report.json
 
