@@ -97,6 +97,8 @@ jobs:
     name: Docker build
     needs: sonar
     runs-on: ubuntu-latest
+    outputs:
+      short_sha: ${{ steps.vars.outputs.short_sha }}
     steps: 
       - uses: actions/checkout@v4
 
