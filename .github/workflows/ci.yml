@@ -176,7 +176,7 @@ jobs:
           severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
           exit-code: 0
 
-vulnerability_Scan_Grype:
+  vulnerability_Scan_Grype:
     runs-on: ubuntu-latest
     name: Vulnerability Scan with Grype
     needs: docker
