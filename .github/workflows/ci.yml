@@ -197,7 +197,6 @@ jobs:
         with:
           image: local/app:${{ needs.docker.outputs.short_sha }}
           fail-build: false
-          severity-cutoff: none
           output-format: json
           output-file: grype-report.json
 
