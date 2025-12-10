@@ -138,23 +138,23 @@ jobs:
       - name: Download image artifact
         uses: actions/download-artifact@v4
         with:
-          name: docker-image-${{ needs.docker-build-artifact.outputs.short_sha }}
+          name: docker-image-${{ needs.docker.outputs.short_sha }}
 
       - name: Load docker image from artifact
-        run: docker load -i image-${{ needs.docker-build-artifact.outputs.short_sha }}.tar
+        run: docker load -i image-${{ needs.docker.outputs.short_sha }}.tar
 
       - name: Scan Docker Image
         uses: aquasecurity/trivy-action@0.33.1
         continue-on-error: true
         with:
-          image-ref: local/app:${{ needs.docker-build-artifact.outputs.short_sha }}
+          image-ref: local/app:${{ needs.docker.outputs.short_sha }}
           severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
           exit-code: 0
 
       - name: Trivy Image Scan (JSON Report)
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: local/app:${{ needs.docker-build-artifact.outputs.short_sha }}
+          image-ref: local/app:${{ needs.docker.outputs.short_sha }}
           vuln-type: 'os,library'
           severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
           format: 'json'                    # <-- wichtig
@@ -184,16 +184,16 @@ jobs:
       - name: Download image artifact
         uses: actions/download-artifact@v4
         with:
-          name: docker-image-${{ needs.docker-build-artifact.outputs.short_sha }}
+          name: docker-image-${{ needs.docker.outputs.short_sha }}
 
       - name: Load docker image from artifact
-        run: docker load -i image-${{ needs.docker-build-artifact.outputs.short_sha }}.tar
+        run: docker load -i image-${{ needs.docker.outputs.short_sha }}.tar
 
       - name: Scan Docker Image with Grype
         uses: anchore/scan-action@v6
         continue-on-error: true
         with:
-          image: local/app:${{ needs.docker-build-artifact.outputs.short_sha }}
+          image: local/app:${{ needs.docker.outputs.short_sha }}
           severity: 'Low,Medium,High,Critical'
           output-format: json
           output-file: grype-report.json
