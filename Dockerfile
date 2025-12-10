@@ -10,7 +10,9 @@ RUN mvn -B -DskipTests=false package && ls -la target
 
 
 # ===== STAGE 2: Runtime =====
-FROM --platform=linux/amd64 eclipse-temurin:17-jre
+# Intentionally use an older, vulnerable base image
+FROM --platform=linux/amd64 eclipse-temurin:17-jre-focal
+#FROM --platform=linux/amd64 eclipse-temurin:17-jre
 WORKDIR /app
 
 # Kopiere das erzeugte JAR aus target nach /app/app.jar
