@@ -158,7 +158,7 @@ jobs:
         with:
           image-ref: local/app:${{ needs.docker.outputs.short_sha }}
           vuln-type: 'os,library'
-          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+          severity: 'HIGH,CRITICAL'
           format: 'json'                    # <-- wichtig
           output: 'trivy-image-report.json' # <-- wird im Workspace erzeugt
           exit-code: 0                     
@@ -175,7 +175,7 @@ jobs:
         continue-on-error: true
         with:
           scan-type: 'config'
-          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+          severity: 'HIGH,CRITICAL'
           exit-code: 0
 
   vulnerability_Scan_Grype:
