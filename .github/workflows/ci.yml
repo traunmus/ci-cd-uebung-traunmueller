@@ -137,7 +137,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: docker
     steps:
-      - name: Download image artifact
+      - name: Download image artifactg
         uses: actions/download-artifact@v4
         with:
           name: docker-image-${{ needs.docker.outputs.short_sha }}
