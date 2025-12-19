@@ -193,7 +193,6 @@ jobs:
 
       - name: Scan Docker Image with Grype
         uses: anchore/scan-action@v6
-        continue-on-error: true
         with:
           image: local/app:${{ needs.docker.outputs.short_sha }}
           fail-build: false
